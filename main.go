@@ -8,6 +8,7 @@ func main() {
 
 	h.Set(5, "test5")
 	h.Set(15, "test15")
+	h.Del(5)
 	h.Set(3, "test3")
 	h.Set(3, "test3")
 	h.Set(3, "test3")
@@ -35,5 +36,7 @@ func main() {
 	//fmt.Println(h.Get(15))
 	//fmt.Println(h.Get(3))
 	//fmt.Println(h.Get(0))
+
+	h.Del(6)
 
 }

@@ -50,6 +50,27 @@ func (h *HashMap) hash(key int) int {
 	return key % len(h.scope)
 }
 
+func (h *HashMap) Del(key int) {
+	hash := h.hash(key)
+	list := h.scope[hash]
+
+	for i := range list {
+		if list[i].originalKey == key {
+			if h.collisions > 0 {
+				h.collisions--
+			}
+
+			newList := append(list[:i], list[i+1:]...)
+
+			h.scope[hash] = newList
+			h.length--
+		}
+	}
+
+	fmt.Printf("LOG_DEL: LENGTH: %d, COLLISIONS: %d\n", h.length, h.collisions)
+	fmt.Println("LOG_DEL: ", h.scope)
+}
+
 func (h *HashMap) Set(key int, a interface{}) {
 	hash := h.hash(key)
 	list := h.scope[hash]
