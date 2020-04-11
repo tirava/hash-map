@@ -56,7 +56,7 @@ func (h *HashMap) Del(key int) {
 
 	for i := range list {
 		if list[i].originalKey == key {
-			if h.collisions > 0 {
+			if h.collisions > 0 && len(list) > 1 {
 				h.collisions--
 			}
 
